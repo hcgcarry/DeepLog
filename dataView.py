@@ -6,7 +6,10 @@ if __name__ == '__main__':
     h1 = set()
     h2 = set()
     h3 = set()
-    with open('data/hdfs_train', 'r') as f:
+    train_log = '/workspace/anomaly_detecton/DeepLog/data/query.log_normal_afterPreProcess_session_numberID'
+    test_log = '/workspace/anomaly_detecton/DeepLog/data/query.log_normal_afterPreProcess_session_numberID'
+    test_abnormal_log= '/workspace/anomaly_detecton/DeepLog/data/query.log_abnormal_afterPreProcess_session_numberID'
+    with open(train_log, 'r') as f:
         for line in f.readlines():
             line = tuple(map(lambda n: n - 1, map(int, line.strip().split())))
             hdfs_train.append(line)
@@ -14,7 +17,7 @@ if __name__ == '__main__':
         for c in line:
             h1.add(c)
 
-    with open('data/hdfs_test_normal', 'r') as f:
+    with open(test_log, 'r') as f:
         for line in f.readlines():
             line = tuple(map(lambda n: n - 1, map(int, line.strip().split())))
             hdfs_test_normal.append(line)
@@ -22,13 +25,13 @@ if __name__ == '__main__':
         for c in line:
             h2.add(c)
 
-    with open('data/hdfs_test_abnormal', 'r') as f:
+    with open(test_abnormal_log, 'r') as f:
         for line in f.readlines():
             line = tuple(map(lambda n: n - 1, map(int, line.strip().split())))
             hdfs_test_abnormal.append(line)
     for line in hdfs_test_abnormal:
         for c in line:
             h3.add(c)
-    print('train length: %d, template length: %d, template: %s' % (len(hdfs_train), len(h1), h1))
-    print('test_normal length: %d, template length: %d, template: %s' % (len(hdfs_test_normal), len(h2), h2))
-    print('test_abnormal length: %d, template length: %d, template: %s' % (len(hdfs_test_abnormal), len(h3), h3))
+    print('train file %s length: %d, template length: %d, template: %s' % (train_log ,len(hdfs_train), len(h1), h1))
+    print('test_normal %s length: %d, template length: %d, template: %s' % (test_log, len(hdfs_test_normal), len(h2), h2))
+    print('test_abnormal %s length: %d, template length: %d, template: %s' % (test_abnormal_log ,len(hdfs_test_abnormal), len(h3), h3))

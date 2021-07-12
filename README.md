@@ -25,3 +25,25 @@ Min Du, Feifei Li, Guineng Zheng, Vivek Srikumar. "Deeplog: Anomaly detection an
 **If you have any questions, please open an** ***[issue](https://github.com/wuyifan18/DeepLog/issues).***
 
 **Welcome to** ***[pull requests](https://github.com/wuyifan18/DeepLog/pulls)*** **to implement the rest of this paper!**
+
+
+
+## my readme
+
+### demo
+
+
+丟近來的log label需要重1開始
+把log 丟到data下面
+進LogKeyModel_train.py 
+    修改 num_class
+    修改  seq_dataset = generate("data/openstack_normal1.log_preprocess_session_numberID") 
+進LogKeyModel_predict.py 修改 num_class
+    修改  seq_dataset = generate("data/openstack_normal1.log_preprocess_session_numberID") 
+    test_normal_loader = generate('openstack_normal2.log_preprocess_session_numberID')
+    test_abnormal_loader = generate('openstack_abnormal.log_preprocess_session_numberID')
+
+python LogKeyModel_train.py
+python LogKeyModel_predict.py
+
+
